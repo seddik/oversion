@@ -1,0 +1,31 @@
+﻿<platformui:DialogWindow  xmlns:platformui="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+                          
+                          x:Class="oVersion.wVersion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:oVersion"
+             mc:Ignorable="d" 
+             Title="oVersion"  Height="400" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <Grid>
+        <DockPanel Margin="10">
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" DockPanel.Dock="Bottom">
+                <Button Content="Save" x:Name="b_save" Width="120" Margin="20"/>
+                <Button Content="Cancel" x:Name="b_cancel" Width="120" Margin="20"/>
+            </StackPanel>
+            <TextBlock x:Name="h_count" DockPanel.Dock="Top" Text="Selected Projects : *"  Margin="5"/>
+            <StackPanel  DockPanel.Dock="Top" Orientation="Horizontal"  Margin="5">
+                <TextBlock x:Name="Version" Text="Version : "  Margin="3"/>
+                <TextBox x:Name="t_major" Width="40" MaxLength="5" Margin="3" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox x:Name="t_minor" Width="40" MaxLength="5" Margin="3" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox x:Name="t_build" Width="40" MaxLength="5" Margin="3" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox x:Name="t_rev" Width="40" MaxLength="5" Margin="3" PreviewTextInput="NumberValidationTextBox"/>
+            </StackPanel>
+            <ListBox x:Name="lst" SelectionMode="Extended"/>
+
+
+        </DockPanel>
+    </Grid>
+</platformui:DialogWindow>
