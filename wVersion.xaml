@@ -17,11 +17,11 @@
             </StackPanel>
             <TextBlock x:Name="h_count" DockPanel.Dock="Top" Text="Selected Projects : *"  Margin="5"/>
             <StackPanel  DockPanel.Dock="Top" Orientation="Horizontal"  Margin="5">
-                <TextBlock x:Name="Version" Text="Version : "  Margin="3"/>
-                <TextBox x:Name="t_major" Width="40" MaxLength="5" Margin="3" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox x:Name="t_minor" Width="40" MaxLength="5" Margin="3" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox x:Name="t_build" Width="40" MaxLength="5" Margin="3" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox x:Name="t_rev" Width="40" MaxLength="5" Margin="3" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBlock x:Name="Version" Text="Version : "  Margin="3" VerticalAlignment="Center"/>
+                <local:VersionTextField x:Name="t_major"   Margin="3" PreviewTextInput="NumberValidationTextBox"/>
+                <local:VersionTextField x:Name="t_minor"   Margin="3" PreviewTextInput="NumberValidationTextBox"/>
+                <local:VersionTextField x:Name="t_build"  Margin="3" PreviewTextInput="NumberValidationTextBox"/>
+                <local:VersionTextField x:Name="t_rev"    Margin="3" PreviewTextInput="NumberValidationTextBox"/>
             </StackPanel>
             <ListBox x:Name="lst" SelectionMode="Extended"/>
 

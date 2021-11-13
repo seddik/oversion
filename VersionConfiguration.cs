@@ -123,7 +123,7 @@ namespace oVersion
                 return;
             }
 
-            var vcForm = new wVersion(dte2.Solution.Projects);
+            var vcForm = new wVersion(dte2.Solution.Projects, dte2.Solution);
             vcForm.ShowModal();
 
 

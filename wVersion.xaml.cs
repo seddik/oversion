@@ -1,11 +1,11 @@
 ﻿using EnvDTE;
+using System.Linq;
 using EnvDTE80;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,18 +28,20 @@ namespace oVersion
     {
 
         List<Project> Projects { get; set; } = new List<Project>();
-
+        Solution Solution { get; set; }
         public wVersion()
         {
 
         }
-        public wVersion(EnvDTE.Projects projs)
+        public wVersion(EnvDTE.Projects projs, EnvDTE.Solution solution)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
             InitializeComponent();
             b_save.Click += B_save_Click;
             b_cancel.Click += B_cancel_Click;
+
+            Solution = solution;
 
             foreach (Project item in projs)
             {
@@ -66,9 +68,9 @@ namespace oVersion
                 return;
 
             t_major.Text = version.Major.ToString();
-            t_minor.Text = version.Minor.ToString();
-            t_build.Text = version.Build.ToString();
-            t_rev.Text = version.Revision.ToString();
+            t_minor.Text = version.Minor >= 0 ? version.Minor.ToString() : "";
+            t_build.Text = version.Build >= 0 ? version.Build.ToString() : "";
+            t_rev.Text = version.Revision >= 0 ? version.Minor.ToString() : "";
 
             Lst_SelectionChanged(null, null);
         }
@@ -84,7 +86,7 @@ namespace oVersion
                 return null;
             }
         }
-        Property GetProp(Properties props, string path)
+        Property GetProp(EnvDTE.Properties props, string path)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -126,11 +128,44 @@ namespace oVersion
                 if (prop == null)
                     continue;
 
-                prop.Value = new Version(int.Parse(t_major.Text), int.Parse(t_minor.Text), int.Parse(t_build.Text), int.Parse(t_rev.Text));
+                if (string.IsNullOrEmpty(t_major.Text))
+                {
+                    MessageBox.Show("Major version can't be empty");
+                    return;
+                }
+                if (string.IsNullOrEmpty(t_minor.Text) && (!string.IsNullOrEmpty(t_build.Text) || !string.IsNullOrEmpty(t_rev.Text)))
+                {
+                    MessageBox.Show("Minor version is empty but build or revision number isn't");
+                    return;
+                }
+                if (string.IsNullOrEmpty(t_build.Text) && !string.IsNullOrEmpty(t_rev.Text))
+                {
+                    MessageBox.Show("Build number is empty but the revision number isn't");
+                    return;
+                }
+
+                var ver = new Version(int.Parse(t_major.Text).ToString() + (string.IsNullOrWhiteSpace(t_minor.Text) ? "" : "." + int.Parse(t_minor.Text))
+                            + (string.IsNullOrWhiteSpace(t_build.Text) ? "" : "." + int.Parse(t_build.Text))
+                            + (string.IsNullOrWhiteSpace(t_rev.Text) ? "" : "." + int.Parse(t_rev.Text))
+                            );
+
+                prop.Value = ver;
+
+                //prop = GetProp(item.Properties, "AssemblyFileVersion");
+                //if (prop != null)
+                //    prop.Value = ver;
+
                 item.Save();
+
+
+
             }
 
             Close();
         }
+
+
+
+
     }
 }

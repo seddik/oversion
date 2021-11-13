@@ -48,11 +48,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="oVersionPackage.cs" />
     <Compile Include="VersionConfiguration.cs" />
+    <Compile Include="VersionTextField.xaml.cs">
+      <DependentUpon>VersionTextField.xaml</DependentUpon>
+    </Compile>
     <Compile Include="wVersion.xaml.cs">
       <DependentUpon>wVersion.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -87,6 +91,10 @@
     <Content Include="Resources\VersionConfiguration.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="VersionTextField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="wVersion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
