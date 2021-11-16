@@ -70,7 +70,7 @@ namespace oVersion
             t_major.Text = version.Major.ToString();
             t_minor.Text = version.Minor >= 0 ? version.Minor.ToString() : "";
             t_build.Text = version.Build >= 0 ? version.Build.ToString() : "";
-            t_rev.Text = version.Revision >= 0 ? version.Minor.ToString() : "";
+            t_rev.Text = version.Revision >= 0 ? version.Revision.ToString() : "";
 
             Lst_SelectionChanged(null, null);
         }
