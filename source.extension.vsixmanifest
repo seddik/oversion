@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="oVersion.c14e0b1b-661c-451c-84f4-b4ea7c836032" Version="1.0.1" Language="en-US" Publisher="OptimIT" />
+        <Identity Id="oVersion.c14e0b1b-661c-451c-84f4-b4ea7c836032" Version="1.0.2" Language="en-US" Publisher="OptimIT" />
         <DisplayName>oVersion</DisplayName>
         <Description xml:space="preserve">Visual studio 2022 Version changer</Description>
         <MoreInfo>https://github.com/seddik/oversion</MoreInfo>
