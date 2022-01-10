@@ -48,7 +48,7 @@ namespace oVersion
                 this.Projects.Add(item);
             }
 
-            lst.ItemsSource = this.Projects;
+            lst.ItemsSource = this.Projects.Where(X => X.Name.ToLower() != ("miscellaneous files"));
             lst.DisplayMemberPath = "Name";
             lst.SelectAll();
 
@@ -124,9 +124,14 @@ namespace oVersion
 
             foreach (Project item in lst.SelectedItems)
             {
+
+
                 var prop = GetProp(item.Properties, "Version") ?? GetProp(item.Properties, "AssemblyVersion");
-                if (prop == null)
+                var prop2 = GetProp(item.Properties, "Version") ?? GetProp(item.Properties, "AssemblyFileVersion");
+
+                if (prop == null && prop2 == null)
                     continue;
+
 
                 if (string.IsNullOrEmpty(t_major.Text))
                 {
@@ -149,11 +154,13 @@ namespace oVersion
                             + (string.IsNullOrWhiteSpace(t_rev.Text) ? "" : "." + int.Parse(t_rev.Text))
                             );
 
-                prop.Value = ver;
+                if (c_version.SelectedIndex == 0 || c_version.SelectedIndex == 2)
+                    prop.Value = ver;
 
-                //prop = GetProp(item.Properties, "AssemblyFileVersion");
-                //if (prop != null)
-                //    prop.Value = ver;
+                if (c_version.SelectedIndex == 1 || c_version.SelectedIndex == 2)
+                    prop2.Value = ver;
+
+
 
                 item.Save();
 

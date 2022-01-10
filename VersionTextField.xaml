@@ -8,6 +8,6 @@
     <DockPanel>
         <Button Width="20" Height="20" Content="x" DockPanel.Dock="Right" Grid.Column="1"  VerticalAlignment="Center" Margin="5" x:Name="chk"/>
         <Button Width="20" Height="20" DockPanel.Dock="Right" Grid.Column="1" Content="+" VerticalAlignment="Center" Margin="5" x:Name="btn"  />
-        <TextBox x:Name="txt" DockPanel.Dock="Left" Height="20" Width="60"   MaxLength="5" />
+        <TextBox x:Name="txt" DockPanel.Dock="Left" Height="20" Width="40"   MaxLength="5" />
     </DockPanel>
 </UserControl>
