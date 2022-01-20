@@ -26,6 +26,13 @@ namespace oVersion
 
             btn.Click += Btn_Click;
             chk.Click += Chk_Click;
+
+            txt.TextChanged += Txt_TextChanged;
+        }
+
+        private void Txt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Text = txt.Text;
         }
 
         private void Chk_Click(object sender, RoutedEventArgs e)
@@ -42,7 +49,7 @@ namespace oVersion
 
             Text = (Convert.ToInt32(Text) + 1).ToString();
 
-        } 
+        }
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
@@ -62,6 +69,6 @@ namespace oVersion
         }
 
 
-         
+
     }
 }

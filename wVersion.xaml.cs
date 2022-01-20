@@ -120,16 +120,18 @@ namespace oVersion
         }
         private void B_save_Click(object sender, RoutedEventArgs e)
         {
+            b_save.Focus();
             ThreadHelper.ThrowIfNotOnUIThread();
 
             foreach (Project item in lst.SelectedItems)
             {
 
 
-                var prop = GetProp(item.Properties, "Version") ?? GetProp(item.Properties, "AssemblyVersion");
-                var prop2 = GetProp(item.Properties, "Version") ?? GetProp(item.Properties, "AssemblyFileVersion");
+                var prop = GetProp(item.Properties, "Version");
+                var prop1 = GetProp(item.Properties, "AssemblyVersion");
+                var prop2 = GetProp(item.Properties, "AssemblyFileVersion");
 
-                if (prop == null && prop2 == null)
+                if (prop == null && prop1 == null && prop2 == null)
                     continue;
 
 
@@ -155,10 +157,18 @@ namespace oVersion
                             );
 
                 if (c_version.SelectedIndex == 0 || c_version.SelectedIndex == 2)
-                    prop.Value = ver;
+                {
+                    if (prop != null)
+                        prop.Value = ver;
+                    if (prop1 != null)
+                        prop1.Value = ver;
+                }
 
                 if (c_version.SelectedIndex == 1 || c_version.SelectedIndex == 2)
-                    prop2.Value = ver;
+                {
+                    if (prop2 != null)
+                        prop2.Value = ver;
+                }
 
 
 
